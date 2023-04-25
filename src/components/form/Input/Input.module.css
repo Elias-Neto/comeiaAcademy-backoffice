@@ -1,0 +1,35 @@
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  width: 100%;
+  border: none;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.input {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  border: 0.2rem solid #333;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.error {
+  border: 0.2rem solid #ff6666;
+}
+
+.errorMsg {
+  color: #ff6666;
+  font-size: 1.4rem;
+  font-weight: bold;
+
+  margin-top: 0.5rem;
+}
