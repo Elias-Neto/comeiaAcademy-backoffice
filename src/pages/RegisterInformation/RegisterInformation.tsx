@@ -1,7 +1,7 @@
 import { Formik, Form } from "formik"
 import * as Yup from "yup"
 
-import styles from "./CadastrarInformacoes.module.css"
+import styles from "./RegisterInformation.module.css"
 
 import { Input } from "../../components/form/Input"
 import { Textarea } from "../../components/form/Textarea"
