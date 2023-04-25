@@ -40,3 +40,38 @@
 .input:focus {
   outline: none;
 }
+
+.error {
+  border: 0.2rem solid #ff6666;
+}
+
+.errorMsg {
+  color: #ff6666;
+  font-size: 1.4rem;
+  font-weight: bold;
+
+  margin-top: 0.5rem;
+}
+
+.button {
+  padding: 1rem 1.5rem;
+  background-color: #0077cc;
+  border-radius: 0.25rem;
+  border: none;
+  cursor: pointer;
+  width: fit-content;
+  margin: 0 auto;
+
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #005fa3;
+}

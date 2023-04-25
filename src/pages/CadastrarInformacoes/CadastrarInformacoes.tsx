@@ -47,50 +47,90 @@ const CadastrarInformacoes: React.FC = () => {
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        <Form className={styles.form}>
-          <fieldset className={styles.formGroup}>
-            <label htmlFor="profilePic" className={styles.label}>
-              Foto de perfil
-            </label>
-            <input
-              type="text"
-              name="profilePic"
-              id="profilePic"
-              className={styles.input}
-            />
-          </fieldset>
+        {({ errors, touched }) => (
+          <Form className={styles.form}>
+            <fieldset className={styles.formGroup}>
+              <label htmlFor="profilePic" className={styles.label}>
+                Foto de perfil
+              </label>
+              <Field
+                type="text"
+                name="profilePic"
+                id="profilePic"
+                className={`${styles.input} ${
+                  touched.profilePic && errors.profilePic && styles.error
+                }`}
+              />
+              <ErrorMessage
+                name="profilePic"
+                component="div"
+                className={styles.errorMsg}
+              />
+            </fieldset>
 
-          <fieldset className={styles.formGroup}>
-            <label htmlFor="name" className={styles.label}>
-              Nome
-            </label>
-            <input type="text" name="name" id="name" className={styles.input} />
-          </fieldset>
+            <fieldset className={styles.formGroup}>
+              <label htmlFor="name" className={styles.label}>
+                Nome
+              </label>
+              <Field
+                type="text"
+                name="name"
+                id="name"
+                className={`${styles.input} ${
+                  touched.name && errors.name && styles.error
+                }`}
+              />
+              <ErrorMessage
+                name="name"
+                component="div"
+                className={styles.errorMsg}
+              />
+            </fieldset>
 
-          <fieldset className={styles.formGroup}>
-            <label htmlFor="office" className={styles.label}>
-              Cargo
-            </label>
-            <input
-              type="text"
-              name="office"
-              id="office"
-              className={styles.input}
-            />
-          </fieldset>
+            <fieldset className={styles.formGroup}>
+              <label htmlFor="office" className={styles.label}>
+                Cargo
+              </label>
+              <Field
+                type="text"
+                name="office"
+                id="office"
+                className={`${styles.input} ${
+                  touched.office && errors.office && styles.error
+                }`}
+              />
+              <ErrorMessage
+                name="office"
+                component="div"
+                className={styles.errorMsg}
+              />
+            </fieldset>
 
-          <fieldset className={styles.formGroup}>
-            <label htmlFor="resume" className={styles.label}>
-              Resumo
-            </label>
-            <textarea
-              name="resume"
-              id="resume"
-              rows={5}
-              className={styles.input}
-            />
-          </fieldset>
-        </Form>
+            <fieldset className={styles.formGroup}>
+              <label htmlFor="resume" className={styles.label}>
+                Resumo
+              </label>
+              <Field
+                as="textarea"
+                name="resume"
+                id="resume"
+                rows={5}
+                className={`${styles.input} ${
+                  touched.resume && errors.resume && styles.error
+                }`}
+              />
+              <ErrorMessage
+                name="resume"
+                component="div"
+                className={styles.errorMsg}
+              />
+            </fieldset>
+
+            <button type="submit" className={styles.button}>
+              Salvar
+            </button>
+          </Form>
+        )}
       </Formik>
     </div>
   )
