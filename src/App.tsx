@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-import { Layout } from "./components/layout"
 import { Home } from "./pages/Home"
-import { RegisterInformation } from "./pages/RegisterInformation"
+import { Layout } from "./components/layout"
+import { ProjectList } from "./pages/ProjectList"
 import { RegisterExperience } from "./pages/RegisterExperience"
+import { RegisterInformation } from "./pages/RegisterInformation"
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
             path="/curriculo/experiencia/cadastro"
             element={<RegisterExperience />}
           />
+          <Route path="portfolio/listagem" element={<ProjectList />} />
         </Routes>
       </Layout>
     </BrowserRouter>
