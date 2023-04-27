@@ -42,29 +42,27 @@ const ProjectList: React.FC = () => {
       </thead>
 
       <tbody>
-        {projects.map((project, index) => {
-          return (
-            <tr key={index}>
-              <td>{project.title}</td>
-              <td>
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className={styles.image}
-                />
-              </td>
-              <td>
-                <a href={project.link} target="_blank">
-                  {project.link}
-                </a>
-              </td>
-              <td>
-                <button onClick={() => handleEdit(index)}>Editar</button>
-                <button onClick={() => handleDelete(index)}>Deletar</button>
-              </td>
-            </tr>
-          )
-        })}
+        {projects.map((project, index) => (
+          <tr key={index}>
+            <td>{project.title}</td>
+            <td>
+              <img
+                src={project.image}
+                alt={project.title}
+                className={styles.image}
+              />
+            </td>
+            <td>
+              <a href={project.link} target="_blank">
+                {project.link}
+              </a>
+            </td>
+            <td>
+              <button onClick={() => handleEdit(index)}>Editar</button>
+              <button onClick={() => handleDelete(index)}>Deletar</button>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   )

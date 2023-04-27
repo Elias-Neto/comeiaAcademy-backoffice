@@ -3,9 +3,9 @@ import * as Yup from "yup"
 
 import styles from "./RegisterInformation.module.css"
 
-import { Input } from "../../components/form/Input"
-import { Textarea } from "../../components/form/Textarea"
-import { Button } from "../../components/form/Button"
+import { Input } from "../../../components/form/Input"
+import { Textarea } from "../../../components/form/Textarea"
+import { Button } from "../../../components/form/Button"
 // import { MyForm } from "../../components/form/MyForm"
 
 interface FormValues {

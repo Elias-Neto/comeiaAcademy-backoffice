@@ -1,9 +1,10 @@
 import * as Yup from "yup"
 import { Formik, Form } from "formik"
 
-import { Input } from "../../components/form/Input"
-import { Button } from "../../components/form/Button"
-import { Textarea } from "../../components/form/Textarea"
+import { Input } from "../../../components/form/Input"
+import { Button } from "../../../components/form/Button"
+import { Select } from "../../../components/form/Select"
+import { Textarea } from "../../../components/form/Textarea"
 
 import styles from "./RegisterExperience.module.css"
 
@@ -79,6 +80,23 @@ const CadastrarExperiencia: React.FC = () => {
               name="endYear"
               errors={errors.endYear}
               touched={touched.endYear}
+            />
+
+            <Select
+              label="Tipo"
+              name="type"
+              options={[
+                {
+                  value: "profissional",
+                  label: "Profissional",
+                },
+                {
+                  value: "academica",
+                  label: "Acadêmica",
+                },
+              ]}
+              errors={errors.type}
+              touched={touched.type}
             />
 
             <Textarea
