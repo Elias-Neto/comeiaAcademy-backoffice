@@ -1,14 +1,23 @@
+import { useEffect, useState } from "react"
 import { Formik, Form } from "formik"
 import * as Yup from "yup"
 
 import styles from "./RegisterInformation.module.css"
 
+import { Card } from "./Card"
 import { Input } from "../../../components/form/Input"
-import { Textarea } from "../../../components/form/Textarea"
 import { Button } from "../../../components/form/Button"
+import { Textarea } from "../../../components/form/Textarea"
 // import { MyForm } from "../../components/form/MyForm"
 
+import {
+  Information,
+  updateInformation,
+  getInformation,
+} from "../../../services/ServiceInformation"
+
 interface FormValues {
+  id: 1
   profilePic: string
   name: string
   office: string
@@ -16,7 +25,10 @@ interface FormValues {
 }
 
 const CadastrarInformacoes: React.FC = () => {
+  const [information, setInformation] = useState<Information>({} as Information)
+
   const initialValues: FormValues = {
+    id: 1,
     profilePic: "",
     name: "",
     office: "",
@@ -30,15 +42,35 @@ const CadastrarInformacoes: React.FC = () => {
     resume: Yup.string().required("Campo obrigatório"),
   })
 
-  const onSubmit = (
+  const fetchInformation = async () => {
+    try {
+      const values = await getInformation()
+      setInformation(values)
+      console.log(information)
+    } catch (error) {
+      console.log("Erro ao buscar informações: ", error)
+    }
+  }
+
+  const onSubmit = async (
     values: FormValues,
     { resetForm }: { resetForm: () => void }
-  ): void => {
-    // Lógica de envio para o backend
-    console.log(values)
-    resetForm()
-    alert("Formulário enviado com sucesso!")
+  ): Promise<void> => {
+    try {
+      await updateInformation(values)
+      setInformation(values)
+      console.log(values)
+      resetForm()
+      alert("Formulário enviado com sucesso!")
+    } catch (error) {
+      console.log("Erro ao enviar o formulário: ", error)
+      alert("Ocorreu um erro ao enviar o formulário. Tente novamente.")
+    }
   }
+
+  useEffect(() => {
+    fetchInformation()
+  }, [])
 
   return (
     // <MyForm
@@ -48,52 +80,56 @@ const CadastrarInformacoes: React.FC = () => {
     //   validationSchema={validationSchema}
     //   onSubmit={onSubmit}
     // ></MyForm>
-    <div className={styles.formWrapper}>
-      <header>
-        <h1>Cadastrar Informações</h1>
-        <p>Formulário para cadastro de informações</p>
-      </header>
+    <>
+      <div className={styles.formWrapper}>
+        <header>
+          <h1>Cadastrar Informações</h1>
+          <p>Formulário para cadastro de informações</p>
+        </header>
 
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        {({ errors, touched }) => (
-          <Form className={styles.form}>
-            <Input
-              label="Foto de Perfil"
-              name="profilePic"
-              errors={errors.profilePic}
-              touched={touched.profilePic}
-            />
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          {({ errors, touched }) => (
+            <Form className={styles.form}>
+              <Input
+                label="Foto de Perfil"
+                name="profilePic"
+                errors={errors.profilePic}
+                touched={touched.profilePic}
+              />
 
-            <Input
-              label="Nome"
-              name="name"
-              errors={errors.name}
-              touched={touched.name}
-            />
+              <Input
+                label="Nome"
+                name="name"
+                errors={errors.name}
+                touched={touched.name}
+              />
 
-            <Input
-              label="Cargo"
-              name="office"
-              errors={errors.office}
-              touched={touched.office}
-            />
+              <Input
+                label="Cargo"
+                name="office"
+                errors={errors.office}
+                touched={touched.office}
+              />
 
-            <Textarea
-              label="Resumo"
-              name="resume"
-              errors={errors.resume}
-              touched={touched.resume}
-            />
+              <Textarea
+                label="Resumo"
+                name="resume"
+                errors={errors.resume}
+                touched={touched.resume}
+              />
 
-            <Button title="Salvar" />
-          </Form>
-        )}
-      </Formik>
-    </div>
+              <Button title="Salvar" />
+            </Form>
+          )}
+        </Formik>
+      </div>
+
+      <Card information={information} />
+    </>
   )
 }
 

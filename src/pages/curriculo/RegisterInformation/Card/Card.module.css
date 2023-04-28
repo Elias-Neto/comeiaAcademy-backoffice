@@ -1,0 +1,43 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  flex: 1;
+
+  background-color: #fff;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.12),
+    0 0.1rem 0.2rem rgba(0, 0, 0, 0.24);
+  border-radius: 0.4rem;
+  height: fit-content;
+  max-width: 30rem;
+  padding: 2rem;
+
+  text-align: center;
+}
+
+.profilePic {
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.name {
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+.office {
+  color: #555;
+}
+
+.resume {
+  font-size: 1.4rem;
+  color: #777;
+}
