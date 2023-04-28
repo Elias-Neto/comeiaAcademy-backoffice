@@ -19,7 +19,7 @@ const ProjectList: React.FC = () => {
       const projects = await getProjects()
       setProjects(projects)
     } catch (error) {
-      console.log("Erro ao buscar projetos", error)
+      console.log("Erro ao buscar ", error)
     }
   }
 
@@ -47,8 +47,10 @@ const ProjectList: React.FC = () => {
       <thead>
         <tr>
           <th>Título</th>
-          <th>Imagem</th>
-          <th>Link</th>
+          <th>Demonstração</th>
+          <th>Descrição</th>
+          <th>GitHub</th>
+          <th>Deploy</th>
           <th>Ações</th>
         </tr>
       </thead>
@@ -58,15 +60,21 @@ const ProjectList: React.FC = () => {
           <tr key={project.id}>
             <td>{project.title}</td>
             <td>
-              <img
-                src={project.image}
-                alt={project.title}
-                className={styles.image}
-              />
+              <a href={project.demonstration} target="_blank">
+                {project.demonstration}
+              </a>
             </td>
             <td>
-              <a href={project.link} target="_blank">
-                {project.link}
+              {project.description}
+            </td>
+            <td>
+              <a href={project.github} target="_blank">
+                {project.github}
+              </a>
+            </td>
+            <td>
+              <a href={project.deploy} target="_blank">
+                {project.deploy}
               </a>
             </td>
             <td>

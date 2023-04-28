@@ -21,14 +21,18 @@ const RegisterProject: React.FC = () => {
   const initialValues: Project = {
     id: 0,
     title: "",
-    link: "",
-    image: "",
+    description: "",
+    demonstration: "",
+    github: "",
+    deploy: "",
   }
 
   const validationSchema = Yup.object().shape({
-    link: Yup.string().required("Campo obrigatório"),
-    image: Yup.string().required("Campo obrigatório"),
     title: Yup.string().required("Campo obrigatório"),
+    demonstration: Yup.string().required("Campo obrigatório"),
+    description: Yup.string().required("Campo obrigatório"),
+    github: Yup.string().required("Campo obrigatório"),
+    deploy: Yup.string()
   })
 
   const onSubmit = async (
@@ -36,8 +40,8 @@ const RegisterProject: React.FC = () => {
     { resetForm }: { resetForm: () => void }
   ): Promise<void> => {
     try {
-      await createOrUpdateProject(values)
       console.log(values)
+      await createOrUpdateProject(values)
       resetForm()
       navigate("/portfolio/listagem")
       alert("Formulário enviado com sucesso!")
@@ -50,8 +54,8 @@ const RegisterProject: React.FC = () => {
   return (
     <div className={styles.formWrapper}>
       <header>
-        <h1>Cadastrar Experiência</h1>
-        <p>Formulário para cadastro de experiência</p>
+        <h1>Cadastrar Portfólio</h1>
+        <p>Formulário para cadastro de portfólio</p>
       </header>
 
       <Formik
@@ -69,17 +73,31 @@ const RegisterProject: React.FC = () => {
             />
 
             <Input
-              label="Imagem"
-              name="image"
-              errors={errors.image}
-              touched={touched.image}
+              label="Demonstração"
+              name="demonstration"
+              errors={errors.demonstration}
+              touched={touched.demonstration}
             />
 
             <Input
-              label="Link"
-              name="link"
-              errors={errors.link}
-              touched={touched.link}
+              label="Descrição"
+              name="description"
+              errors={errors.description}
+              touched={touched.description}
+            />
+
+            <Input
+              label="Github"
+              name="github"
+              errors={errors.github}
+              touched={touched.github}
+            />
+
+            <Input
+              label="Deploy"
+              name="deploy"
+              errors={errors.deploy}
+              touched={touched.deploy}
             />
 
             <Button title="Salvar" type="submit" />

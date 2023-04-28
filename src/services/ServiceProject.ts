@@ -3,32 +3,34 @@ import api from "./api"
 export interface Project {
   id: number
   title: string
-  link: string
-  image: string
+  description: string
+  demonstration: string
+  github: string
+  deploy: string
 }
 
 export const createProject = async (project: Project) => {
-  const response = await api.post("/projetos", project)
+  const response = await api.post("/portfolio", project)
   return response.data
 }
 
 export const getProjects = async () => {
-  const response = await api.get("/projetos")
+  const response = await api.get("/portfolio")
   return response.data
 }
 
 export const getProjectById = async (id: number) => {
-  const response = await api.get(`/projetos/${id}`)
+  const response = await api.get(`/portfolio/${id}`)
   return response.data
 }
 
 export const updateProject = async (id: number, project: Project) => {
-  const response = await api.put(`/projetos/${id}`, project)
+  const response = await api.put(`/portfolio/${id}`, project)
   return response.data
 }
 
 export const deleteProject = async (id: number) => {
-  const response = await api.delete(`/projetos/${id}`)
+  const response = await api.delete(`/portfolio/${id}`)
   return response.data
 }
 

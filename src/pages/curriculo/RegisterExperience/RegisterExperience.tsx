@@ -33,12 +33,8 @@ const CadastrarExperiencia: React.FC = () => {
     title: Yup.string().required("Campo obrigatório"),
     description: Yup.string(),
     type: Yup.string().required("Campo obrigatório"),
-    startYear: Yup.number()
-      .required("Campo obrigatório")
-      .typeError("Um número é obrigatório"),
-    endYear: Yup.number()
-      .required("Campo obrigatório")
-      .typeError("Um número é obrigatório"),
+    startYear: Yup.number().typeError("Um número é obrigatório"),
+    endYear: Yup.number().typeError("Um número é obrigatório"),
   })
 
   const onSubmit = async (
