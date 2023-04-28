@@ -1,34 +1,46 @@
-import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
 
 import styles from "./ProjectList.module.css"
 
-interface Project {
-  link: string
-  image: string
-  title: string
-}
+import {
+  Project,
+  getProjects,
+  deleteProject,
+} from "../../../services/ServiceProject"
 
 const ProjectList: React.FC = () => {
-  const [projects, setProjects] = useState<Project[]>([
-    {
-      link: "https://academy.comeialabs.com.br",
-      image: "https://picsum.photos/300/200?random=1",
-      title: "Projeto 1",
-    },
-    {
-      link: "https://academy.comeialabs.com.br",
-      image: "https://picsum.photos/300/200?random=2",
-      title: "Projeto 2",
-    },
-    {
-      link: "https://academy.comeialabs.com.br",
-      image: "https://picsum.photos/300/200?random=3",
-      title: "Projeto 3",
-    },
-  ])
+  const navigate = useNavigate()
 
-  const handleEdit = (index: number) => {}
-  const handleDelete = (index: number) => {}
+  const [projects, setProjects] = useState<Project[]>([])
+
+  const fetchProjects = async () => {
+    try {
+      const projects = await getProjects()
+      setProjects(projects)
+    } catch (error) {
+      console.log("Erro ao buscar projetos", error)
+    }
+  }
+
+  const handleEdit = (project: Project) => {
+    navigate("/portfolio/cadastro", { state: project })
+  }
+
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteProject(id)
+      setProjects(projects.filter((project) => project.id !== id))
+      alert("Projeto deletado com sucesso!")
+    } catch (error) {
+      console.log("Erro ao deletar projeto", error)
+      alert("Ocorreu um erro ao deletar projeto")
+    }
+  }
+
+  useEffect(() => {
+    fetchProjects()
+  })
 
   return (
     <table className={styles.table}>
@@ -42,8 +54,8 @@ const ProjectList: React.FC = () => {
       </thead>
 
       <tbody>
-        {projects.map((project, index) => (
-          <tr key={index}>
+        {projects.map((project) => (
+          <tr key={project.id}>
             <td>{project.title}</td>
             <td>
               <img
@@ -58,8 +70,8 @@ const ProjectList: React.FC = () => {
               </a>
             </td>
             <td>
-              <button onClick={() => handleEdit(index)}>Editar</button>
-              <button onClick={() => handleDelete(index)}>Deletar</button>
+              <button onClick={() => handleEdit(project)}>Editar</button>
+              <button onClick={() => handleDelete(project.id)}>Deletar</button>
             </td>
           </tr>
         ))}

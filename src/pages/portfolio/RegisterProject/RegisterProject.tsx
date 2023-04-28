@@ -1,19 +1,25 @@
 import * as Yup from "yup"
 import { Formik, Form } from "formik"
+import { useNavigate, useLocation } from "react-router-dom"
+
+import styles from "./RegisterProject.module.css"
 
 import { Input } from "../../../components/form/Input"
 import { Button } from "../../../components/form/Button"
 
-import styles from "./RegisterProject.module.css"
-
-interface FormValues {
-  title: string
-  link: string
-  image: string
-}
+import {
+  Project,
+  createOrUpdateProject,
+} from "../../../services/ServiceProject"
 
 const RegisterProject: React.FC = () => {
-  const initialValues: FormValues = {
+  const navigate = useNavigate()
+
+  const location = useLocation()
+  const project = location.state as Project
+
+  const initialValues: Project = {
+    id: 0,
     title: "",
     link: "",
     image: "",
@@ -25,14 +31,20 @@ const RegisterProject: React.FC = () => {
     title: Yup.string().required("Campo obrigatório"),
   })
 
-  const onSubmit = (
-    values: FormValues,
+  const onSubmit = async (
+    values: Project,
     { resetForm }: { resetForm: () => void }
-  ): void => {
-    // Lógica de envio para o backend
-    console.log(values)
-    resetForm()
-    alert("Formulário enviado com sucesso!")
+  ): Promise<void> => {
+    try {
+      await createOrUpdateProject(values)
+      console.log(values)
+      resetForm()
+      navigate("/portfolio/listagem")
+      alert("Formulário enviado com sucesso!")
+    } catch (error) {
+      console.log(error)
+      alert("Ocorreu um erro ao enviar o formulário")
+    }
   }
 
   return (
@@ -43,7 +55,7 @@ const RegisterProject: React.FC = () => {
       </header>
 
       <Formik
-        initialValues={initialValues}
+        initialValues={project || initialValues}
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
@@ -70,7 +82,7 @@ const RegisterProject: React.FC = () => {
               touched={touched.link}
             />
 
-            <Button title="Salvar" />
+            <Button title="Salvar" type="submit" />
           </Form>
         )}
       </Formik>
