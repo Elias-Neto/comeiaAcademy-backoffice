@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Formik, Form } from "formik"
 import * as Yup from "yup"
+import deepEqual from "deep-equal"
 
 import styles from "./RegisterInformation.module.css"
 
@@ -15,19 +16,10 @@ import {
   updateInformation,
   getInformation,
 } from "../../../services/ServiceInformation"
-
-interface FormValues {
-  id: 1
-  profilePic: string
-  name: string
-  office: string
-  resume: string
-}
-
 const CadastrarInformacoes: React.FC = () => {
   const [information, setInformation] = useState<Information>({} as Information)
 
-  const initialValues: FormValues = {
+  const initialValues: Information = {
     id: 1,
     profilePic: "",
     name: "",
@@ -42,18 +34,8 @@ const CadastrarInformacoes: React.FC = () => {
     resume: Yup.string().required("Campo obrigatório"),
   })
 
-  const fetchInformation = async () => {
-    try {
-      const values = await getInformation()
-      setInformation(values)
-      console.log(information)
-    } catch (error) {
-      console.log("Erro ao buscar informações: ", error)
-    }
-  }
-
   const onSubmit = async (
-    values: FormValues,
+    values: Information,
     { resetForm }: { resetForm: () => void }
   ): Promise<void> => {
     try {
@@ -65,6 +47,27 @@ const CadastrarInformacoes: React.FC = () => {
     } catch (error) {
       console.log("Erro ao enviar o formulário: ", error)
       alert("Ocorreu um erro ao enviar o formulário. Tente novamente.")
+    }
+  }
+
+  const fetchInformation = async () => {
+    try {
+      const values = await getInformation()
+      setInformation(values)
+      console.log(information)
+    } catch (error) {
+      console.log("Erro ao buscar informações: ", error)
+    }
+  }
+
+  const handleDelete = async () => {
+    try {
+      await updateInformation(initialValues)
+      setInformation(initialValues)
+      alert("Informações deletado com sucesso!")
+    } catch (error) {
+      console.log("Erro ao deletar informações: ", error)
+      alert("Ocorreu um erro ao deletar informações. Tente novamente.")
     }
   }
 
@@ -88,8 +91,9 @@ const CadastrarInformacoes: React.FC = () => {
         </header>
 
         <Formik
-          initialValues={initialValues}
+          initialValues={information}
           validationSchema={validationSchema}
+          enableReinitialize={true}
           onSubmit={onSubmit}
         >
           {({ errors, touched }) => (
@@ -122,13 +126,18 @@ const CadastrarInformacoes: React.FC = () => {
                 touched={touched.resume}
               />
 
-              <Button title="Salvar" />
+              <Button title="Salvar" type="submit" />
             </Form>
           )}
         </Formik>
       </div>
 
-      <Card information={information} />
+      {!deepEqual(information, initialValues) && (
+        <div className={styles.cardWrapper}>
+          <Card information={information} />
+          <Button title="Deletar" isRed onClick={handleDelete} />
+        </div>
+      )}
     </>
   )
 }

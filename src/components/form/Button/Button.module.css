@@ -20,3 +20,12 @@
 .button:focus {
   background-color: #005fa3;
 }
+
+.button.bgRed {
+  background-color: #ff3333;
+}
+
+.button.bgRed:hover,
+.button.bgRed:focus {
+  background-color: #cc0000;
+}
