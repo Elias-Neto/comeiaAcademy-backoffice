@@ -1,3 +1,5 @@
+import { Field, ErrorMessage } from "formik"
+
 import styles from "./Select.module.css"
 
 interface Option {
@@ -27,15 +29,22 @@ const Select: React.FC<SelectProps> = ({
       <label htmlFor={name} className={styles.label}>
         {label}:
       </label>
-      <select id={name} name={name} className={`${styles.input} ${errorStyle}`}>
+
+      <Field
+        as="select"
+        id={name}
+        name={name}
+        className={`${styles.input} ${errorStyle}`}
+      >
         <option value="">Selecione uma opção</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}
-      </select>
-      {errors && touched && <div className={styles.errorMsg}>{errors}</div>}
+      </Field>
+
+      <ErrorMessage name={name} className={styles.errorMsg} component="div" />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Formik, Form } from "formik"
-import * as Yup from "yup"
 import deepEqual from "deep-equal"
+import * as Yup from "yup"
 
 import styles from "./RegisterInformation.module.css"
 
@@ -16,6 +16,7 @@ import {
   updateInformation,
   getInformation,
 } from "../../../services/ServiceInformation"
+
 const CadastrarInformacoes: React.FC = () => {
   const [information, setInformation] = useState<Information>({} as Information)
 

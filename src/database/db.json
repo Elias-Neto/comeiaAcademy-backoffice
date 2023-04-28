@@ -6,15 +6,49 @@
       "name": "",
       "office": "",
       "resume": ""
-    },
-    {
-      "id": 1,
-      "profilePic": "",
-      "name": "",
-      "office": "",
-      "resume": ""
     }
   ],
-  "experiencias": [],
+  "experiencias": [
+    {
+      "id": 1,
+      "title": "AAAA",
+      "description": "a",
+      "type": "profissional",
+      "startYear": "1",
+      "endYear": "1"
+    },
+    {
+      "id": 3,
+      "title": "b",
+      "description": "asdasd",
+      "type": "academica",
+      "startYear": "2",
+      "endYear": "3"
+    },
+    {
+      "id": 4,
+      "title": "c",
+      "description": "a",
+      "type": "profissional",
+      "startYear": "4",
+      "endYear": "5"
+    },
+    {
+      "id": 5,
+      "title": "teste",
+      "description": "a",
+      "type": "profissional",
+      "startYear": "1",
+      "endYear": "2"
+    },
+    {
+      "id": 6,
+      "title": "F",
+      "description": "a",
+      "type": "profissional",
+      "startYear": "2",
+      "endYear": "3"
+    }
+  ],
   "portifolio": []
 }
