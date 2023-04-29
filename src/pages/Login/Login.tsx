@@ -7,6 +7,9 @@ import styles from "./Login.module.css"
 import { Input } from "../../components/form/Input"
 import { Button } from "../../components/form/Button"
 
+import { login as loginService } from "../../services/AuthService"
+import { useAuth } from "../../contexts/AuthContext"
+
 interface LoginValues {
   email: string
   password: string
@@ -23,19 +26,21 @@ const validationSchema = Yup.object().shape({
 })
 
 
-
 const Login = () => {
   const navigate = useNavigate()
+  const { login } = useAuth()
 
   const onSubmit = async (
     values: LoginValues
   ) => {
     try {
+      const user = await loginService(values.email, values.password)
+      login(user)
       navigate("/")
       console.log(values)
     } catch (error) {
       console.log(error)
-      alert("Ocorreu um erro ao enviar o formulário")
+      alert("Erro ao fazer login")
     }
   }
 

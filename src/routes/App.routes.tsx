@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import { Layout } from "../components/layout";
 
@@ -9,7 +9,20 @@ import { RegisterProject } from "../pages/portfolio/RegisterProject"
 import { RegisterExperience } from "../pages/curriculo/RegisterExperience"
 import { RegisterInformation } from "../pages/curriculo/RegisterInformation"
 
+import { useAuth } from "../contexts/AuthContext";
+
 const AppRoutes: React.FC = () => {
+  const { authenticated, isLoading } = useAuth()
+  const navigate = useNavigate()
+
+  if (isLoading) {
+    return <div>Carregando...</div>
+  }
+
+  if (!authenticated) {
+    navigate("/login")
+  }
+
   return (
     <Layout>
       <Routes>
