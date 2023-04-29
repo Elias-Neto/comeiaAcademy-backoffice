@@ -18,8 +18,6 @@ import {
 } from "../../../services/ServiceInformation"
 
 const CadastrarInformacoes: React.FC = () => {
-  const [information, setInformation] = useState<Information>({} as Information)
-
   const initialValues: Information = {
     id: 1,
     profilePic: "",
@@ -27,6 +25,8 @@ const CadastrarInformacoes: React.FC = () => {
     office: "",
     resume: "",
   }
+
+  const [information, setInformation] = useState<Information>(initialValues as Information)
 
   const validationSchema = Yup.object().shape({
     profilePic: Yup.string().required("Campo obrigatório"),
@@ -92,7 +92,7 @@ const CadastrarInformacoes: React.FC = () => {
         </header>
 
         <Formik
-          initialValues={information}
+          initialValues={information || initialValues}
           validationSchema={validationSchema}
           enableReinitialize={true}
           onSubmit={onSubmit}
