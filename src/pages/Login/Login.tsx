@@ -1,14 +1,12 @@
 import * as Yup from "yup"
-import { Formik, Form } from "formik"
 import { useNavigate } from "react-router-dom"
 
-import styles from "./Login.module.css"
-
+import { Form } from "../../components/form/Form"
 import { Input } from "../../components/form/Input"
-import { Button } from "../../components/form/Button"
+import { Button } from "../../components/common/Button"
 
-import { login as loginService } from "../../services/AuthService"
 import { useAuth } from "../../contexts/AuthContext"
+import { login as loginService } from "../../services/AuthService"
 
 interface LoginValues {
   email: string
@@ -32,12 +30,11 @@ const Login = () => {
 
   const onSubmit = async (
     values: LoginValues
-  ) => {
+  ): Promise<void> => {
     try {
       const user = await loginService(values.email, values.password)
       login(user)
       navigate("/")
-      console.log(values)
     } catch (error) {
       console.log(error)
       alert("Erro ao fazer login")
@@ -45,39 +42,68 @@ const Login = () => {
   }
 
   return (
-    <div className={styles.formWrapper}>
-      <header>
-        <h1>BackOffice do Meu Site Pessoal</h1>
-        <p>Faça seu login</p>
-      </header>
+    <Form
+      title="BackOffice do Meu Site Pessoal"
+      description="Faça seu login"
+      onSubmit={onSubmit}
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      isLogin
+    >
+      {({ errors, touched }) => (
+        <>
+          <Input
+            label="E-mail"
+            name="email"
+            errors={errors.email}
+            touched={touched.email}
+          />
 
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        {({ errors, touched }) => (
-          <Form className={styles.form}>
-            <Input
-              label="E-mail"
-              name="email"
-              errors={errors.email}
-              touched={touched.email}
-            />
+          <Input
+            label="Senha"
+            name="password"
+            type="password"
+            errors={errors.password}
+            touched={touched.password}
+          />
 
-            <Input
-              label="Senha"
-              name="password"
-              type="password"
-              errors={errors.password}
-              touched={touched.password}
-            />
+          <Button title="Salvar" type="submit" />
+        </>
+      )}
+    </Form>
+    // <div className={styles.formWrapper}>
+    //   <header>
+    //     <h1>BackOffice do Meu Site Pessoal</h1>
+    //     <p>Faça seu login</p>
+    //   </header>
 
-            <Button title="Salvar" type="submit" />
-          </Form>
-        )}
-      </Formik>
-    </div>
+    //   <Formik
+    //     initialValues={initialValues}
+    //     validationSchema={validationSchema}
+    //     onSubmit={onSubmit}
+    //   >
+    //     {({ errors, touched }) => (
+    //       <Form className={styles.form}>
+    //         <Input
+    //           label="E-mail"
+    //           name="email"
+    //           errors={errors.email}
+    //           touched={touched.email}
+    //         />
+
+    //         <Input
+    //           label="Senha"
+    //           name="password"
+    //           type="password"
+    //           errors={errors.password}
+    //           touched={touched.password}
+    //         />
+
+    //         <Button title="Salvar" type="submit" />
+    //       </Form>
+    //     )}
+    //   </Formik>
+    // </div>
   )
 }
 

@@ -40,7 +40,7 @@ const ProjectList: React.FC = () => {
 
   useEffect(() => {
     fetchProjects()
-  })
+  }, [projects])
 
   return (
     <table className={styles.table}>

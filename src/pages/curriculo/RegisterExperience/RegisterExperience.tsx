@@ -1,11 +1,9 @@
 import * as Yup from "yup"
-import { Formik, Form } from "formik"
 import { useNavigate, useLocation } from "react-router-dom"
 
-import styles from "./RegisterExperience.module.css"
-
+import { Form } from "../../../components/form/Form"
 import { Input } from "../../../components/form/Input"
-import { Button } from "../../../components/form/Button"
+import { Button } from "../../../components/common/Button"
 import { Select } from "../../../components/form/Select"
 import { Textarea } from "../../../components/form/Textarea"
 
@@ -25,11 +23,12 @@ const CadastrarExperiencia: React.FC = () => {
     title: "",
     description: "",
     type: "",
-    startYear: "",
-    endYear: "",
+    startYear: 0,
+    endYear: 0,
   }
 
   const validationSchema = Yup.object().shape({
+    id: Yup.number(),
     title: Yup.string().required("Campo obrigatório"),
     description: Yup.string(),
     type: Yup.string().required("Campo obrigatório"),
@@ -43,7 +42,6 @@ const CadastrarExperiencia: React.FC = () => {
   ): Promise<void> => {
     try {
       await createOrUpdateExperience(values)
-      console.log(values)
       resetForm()
       navigate("/curriculo/experiancia/listagem")
       alert("Formulário enviado com sucesso!")
@@ -54,69 +52,64 @@ const CadastrarExperiencia: React.FC = () => {
   }
 
   return (
-    <div className={styles.formWrapper}>
-      <header>
-        <h1>Cadastrar Experiência</h1>
-        <p>Formulário para cadastro de experiência</p>
-      </header>
+    <Form
+      title="Cadastrar Experiência"
+      description="Formulário para cadastro de experiência"
+      onSubmit={onSubmit}
+      validationSchema={validationSchema}
+      initialValues={experience || initialValues}
+    >
+      {({ errors, touched }) => (
+        <>
+          <Input
+            label="Título"
+            name="title"
+            errors={errors.title}
+            touched={touched.title}
+          />
 
-      <Formik
-        initialValues={experience || initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        {({ errors, touched }) => (
-          <Form className={styles.form}>
-            <Input
-              label="Título"
-              name="title"
-              errors={errors.title}
-              touched={touched.title}
-            />
+          <Input
+            label="Ano Início"
+            name="startYear"
+            errors={errors.startYear}
+            touched={touched.startYear}
+          />
 
-            <Input
-              label="Ano Início"
-              name="startYear"
-              errors={errors.startYear}
-              touched={touched.startYear}
-            />
+          <Input
+            label="Ano de Fim"
+            name="endYear"
+            errors={errors.endYear}
+            touched={touched.endYear}
+          />
 
-            <Input
-              label="Ano de Fim"
-              name="endYear"
-              errors={errors.endYear}
-              touched={touched.endYear}
-            />
+          <Select
+            label="Tipo"
+            name="type"
+            options={[
+              {
+                value: "profissional",
+                label: "Profissional",
+              },
+              {
+                value: "academica",
+                label: "Acadêmica",
+              },
+            ]}
+            errors={errors.type}
+            touched={touched.type}
+          />
 
-            <Select
-              label="Tipo"
-              name="type"
-              options={[
-                {
-                  value: "profissional",
-                  label: "Profissional",
-                },
-                {
-                  value: "academica",
-                  label: "Acadêmica",
-                },
-              ]}
-              errors={errors.type}
-              touched={touched.type}
-            />
+          <Textarea
+            label="Descrição"
+            name="description"
+            errors={errors.description}
+            touched={touched.description}
+          />
 
-            <Textarea
-              label="Descrição"
-              name="description"
-              errors={errors.description}
-              touched={touched.description}
-            />
-
-            <Button title="Salvar" type="submit" />
-          </Form>
-        )}
-      </Formik>
-    </div>
+          <Button title="Salvar" type="submit" />
+        </>
+      )}
+    </Form>
   )
 }
 

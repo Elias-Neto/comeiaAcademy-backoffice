@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react"
-import { Formik, Form } from "formik"
-import deepEqual from "deep-equal"
 import * as Yup from "yup"
+import deepEqual from "deep-equal"
+import { useEffect, useState } from "react"
 
 import styles from "./RegisterInformation.module.css"
 
 import { Card } from "./Card"
+import { Form } from "../../../components/form/Form"
 import { Input } from "../../../components/form/Input"
-import { Button } from "../../../components/form/Button"
+import { Button } from "../../../components/common/Button"
 import { Textarea } from "../../../components/form/Textarea"
-// import { MyForm } from "../../components/form/MyForm"
 
 import {
   Information,
@@ -29,6 +28,7 @@ const CadastrarInformacoes: React.FC = () => {
   const [information, setInformation] = useState<Information>(initialValues as Information)
 
   const validationSchema = Yup.object().shape({
+    id: Yup.number(),
     profilePic: Yup.string().required("Campo obrigatório"),
     name: Yup.string().required("Campo obrigatório"),
     office: Yup.string().required("Campo obrigatório"),
@@ -42,7 +42,6 @@ const CadastrarInformacoes: React.FC = () => {
     try {
       await updateInformation(values)
       setInformation(values)
-      console.log(values)
       resetForm()
       alert("Formulário enviado com sucesso!")
     } catch (error) {
@@ -55,7 +54,6 @@ const CadastrarInformacoes: React.FC = () => {
     try {
       const values = await getInformation()
       setInformation(values)
-      console.log(information)
     } catch (error) {
       console.log("Erro ao buscar informações: ", error)
     }
@@ -77,61 +75,49 @@ const CadastrarInformacoes: React.FC = () => {
   }, [])
 
   return (
-    // <MyForm
-    //   title="Cadastrar Informações"
-    //   description="Formulário para cadastro de informações"
-    //   initialValues={initialValues}
-    //   validationSchema={validationSchema}
-    //   onSubmit={onSubmit}
-    // ></MyForm>
     <>
-      <div className={styles.formWrapper}>
-        <header>
-          <h1>Cadastrar Informações</h1>
-          <p>Formulário para cadastro de informações</p>
-        </header>
+      <Form
+        title="Cadastrar Informações"
+        description="Formulário para cadastro de informações"
+        initialValues={information}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+        enableRenitialize
+      >
+        {({ errors, touched }) => (
+          <>
+            <Input
+              label="Foto de Perfil"
+              name="profilePic"
+              errors={errors.profilePic}
+              touched={touched.profilePic}
+            />
 
-        <Formik
-          initialValues={information || initialValues}
-          validationSchema={validationSchema}
-          enableReinitialize={true}
-          onSubmit={onSubmit}
-        >
-          {({ errors, touched }) => (
-            <Form className={styles.form}>
-              <Input
-                label="Foto de Perfil"
-                name="profilePic"
-                errors={errors.profilePic}
-                touched={touched.profilePic}
-              />
+            <Input
+              label="Nome"
+              name="name"
+              errors={errors.name}
+              touched={touched.name}
+            />
 
-              <Input
-                label="Nome"
-                name="name"
-                errors={errors.name}
-                touched={touched.name}
-              />
+            <Input
+              label="Cargo"
+              name="office"
+              errors={errors.office}
+              touched={touched.office}
+            />
 
-              <Input
-                label="Cargo"
-                name="office"
-                errors={errors.office}
-                touched={touched.office}
-              />
+            <Textarea
+              label="Resumo"
+              name="resume"
+              errors={errors.resume}
+              touched={touched.resume}
+            />
 
-              <Textarea
-                label="Resumo"
-                name="resume"
-                errors={errors.resume}
-                touched={touched.resume}
-              />
-
-              <Button title="Salvar" type="submit" />
-            </Form>
-          )}
-        </Formik>
-      </div>
+            <Button title="Salvar" type="submit" />
+          </>
+        )}
+      </Form>
 
       {!deepEqual(information, initialValues) && (
         <div className={styles.cardWrapper}>

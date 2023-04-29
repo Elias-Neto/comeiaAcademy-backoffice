@@ -1,11 +1,9 @@
 import * as Yup from "yup"
-import { Formik, Form } from "formik"
 import { useNavigate, useLocation } from "react-router-dom"
 
-import styles from "./RegisterProject.module.css"
-
+import { Form } from "../../../components/form/Form"
 import { Input } from "../../../components/form/Input"
-import { Button } from "../../../components/form/Button"
+import { Button } from "../../../components/common/Button"
 
 import {
   Project,
@@ -28,6 +26,7 @@ const RegisterProject: React.FC = () => {
   }
 
   const validationSchema = Yup.object().shape({
+    id: Yup.number(),
     title: Yup.string().required("Campo obrigatório"),
     demonstration: Yup.string().required("Campo obrigatório"),
     description: Yup.string().required("Campo obrigatório"),
@@ -52,59 +51,54 @@ const RegisterProject: React.FC = () => {
   }
 
   return (
-    <div className={styles.formWrapper}>
-      <header>
-        <h1>Cadastrar Portfólio</h1>
-        <p>Formulário para cadastro de portfólio</p>
-      </header>
+    <Form
+      title="Cadastrar Projeto"
+      description="Formulário para cadastro de projeto"
+      onSubmit={onSubmit}
+      initialValues={project || initialValues}
+      validationSchema={validationSchema}
+    >
+      {({ errors, touched }) => (
+        <>
+          <Input
+            label="Título"
+            name="title"
+            errors={errors.title}
+            touched={touched.title}
+          />
 
-      <Formik
-        initialValues={project || initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        {({ errors, touched }) => (
-          <Form className={styles.form}>
-            <Input
-              label="Título"
-              name="title"
-              errors={errors.title}
-              touched={touched.title}
-            />
+          <Input
+            label="Demonstração"
+            name="demonstration"
+            errors={errors.demonstration}
+            touched={touched.demonstration}
+          />
 
-            <Input
-              label="Demonstração"
-              name="demonstration"
-              errors={errors.demonstration}
-              touched={touched.demonstration}
-            />
+          <Input
+            label="Descrição"
+            name="description"
+            errors={errors.description}
+            touched={touched.description}
+          />
 
-            <Input
-              label="Descrição"
-              name="description"
-              errors={errors.description}
-              touched={touched.description}
-            />
+          <Input
+            label="Github"
+            name="github"
+            errors={errors.github}
+            touched={touched.github}
+          />
 
-            <Input
-              label="Github"
-              name="github"
-              errors={errors.github}
-              touched={touched.github}
-            />
+          <Input
+            label="Deploy"
+            name="deploy"
+            errors={errors.deploy}
+            touched={touched.deploy}
+          />
 
-            <Input
-              label="Deploy"
-              name="deploy"
-              errors={errors.deploy}
-              touched={touched.deploy}
-            />
-
-            <Button title="Salvar" type="submit" />
-          </Form>
-        )}
-      </Formik>
-    </div>
+          <Button title="Salvar" type="submit" />
+        </>
+      )}
+    </Form>
   )
 }
 
