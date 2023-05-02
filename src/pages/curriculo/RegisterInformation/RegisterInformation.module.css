@@ -3,6 +3,13 @@
   gap: 4rem;
 }
 
+.leftWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  flex: 1;
+}
+
 .cardWrapper {
   display: flex;
   flex-direction: column;

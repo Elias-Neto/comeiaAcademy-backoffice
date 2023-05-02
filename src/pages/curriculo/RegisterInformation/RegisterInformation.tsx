@@ -7,6 +7,7 @@ import styles from "./RegisterInformation.module.css"
 import { Card } from "./Card"
 import { Form } from "../../../components/form/Form"
 import { Input } from "../../../components/form/Input"
+import { Header } from "../../../components/common/Header"
 import { Button } from "../../../components/common/Button"
 import { Textarea } from "../../../components/form/Textarea"
 
@@ -76,48 +77,53 @@ const CadastrarInformacoes: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <Form
-        title="Cadastrar Informações"
-        description="Formulário para cadastro de informações"
-        initialValues={information}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-        enableRenitialize
-      >
-        {({ errors, touched }) => (
-          <>
-            <Input
-              label="Foto de Perfil"
-              name="profilePic"
-              errors={errors.profilePic}
-              touched={touched.profilePic}
-            />
+      <div className={styles.leftWrapper}>
+        <Header
+          title="Cadastrar Informações"
+          description="Formulário para cadastro de informações"
+        />
+        <Form
+          initialValues={information}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+          enableRenitialize
+        >
+          {({ errors, touched }) => (
+            <>
+              <Input
+                label="Foto de Perfil"
+                name="profilePic"
+                errors={errors.profilePic}
+                touched={touched.profilePic}
+              />
 
-            <Input
-              label="Nome"
-              name="name"
-              errors={errors.name}
-              touched={touched.name}
-            />
+              <Input
+                label="Nome"
+                name="name"
+                errors={errors.name}
+                touched={touched.name}
+              />
 
-            <Input
-              label="Cargo"
-              name="office"
-              errors={errors.office}
-              touched={touched.office}
-            />
+              <Input
+                label="Cargo"
+                name="office"
+                errors={errors.office}
+                touched={touched.office}
+              />
 
-            <Textarea
-              label="Resumo"
-              name="resume"
-              errors={errors.resume}
-              touched={touched.resume}
-            />
+              <Textarea
+                label="Resumo"
+                name="resume"
+                errors={errors.resume}
+                touched={touched.resume}
+              />
 
-            <Button title="Salvar" type="submit" />
-          </>
-        )}
-      </Form>
+              <Button title="Salvar" type="submit" />
+            </>
+          )}
+        </Form>
+
+      </div>
 
       {!deepEqual(information, initialValues) && (
         <div className={styles.cardWrapper}>

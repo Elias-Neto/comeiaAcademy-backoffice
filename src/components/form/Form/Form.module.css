@@ -3,7 +3,6 @@
   justify-content: center;
   flex-direction: column;
   gap: 4rem;
-  flex: 1;
 }
 
 .formWrapper.login {

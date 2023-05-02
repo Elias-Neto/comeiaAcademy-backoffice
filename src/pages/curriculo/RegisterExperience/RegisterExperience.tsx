@@ -1,10 +1,13 @@
 import * as Yup from "yup"
 import { useNavigate, useLocation } from "react-router-dom"
 
+import styles from "./RegisterExperience.module.css"
+
 import { Form } from "../../../components/form/Form"
 import { Input } from "../../../components/form/Input"
-import { Button } from "../../../components/common/Button"
 import { Select } from "../../../components/form/Select"
+import { Header } from "../../../components/common/Header"
+import { Button } from "../../../components/common/Button"
 import { Textarea } from "../../../components/form/Textarea"
 
 import {
@@ -52,64 +55,70 @@ const CadastrarExperiencia: React.FC = () => {
   }
 
   return (
-    <Form
-      title="Cadastrar Experiência"
-      description="Formulário para cadastro de experiência"
-      onSubmit={onSubmit}
-      validationSchema={validationSchema}
-      initialValues={experience || initialValues}
-    >
-      {({ errors, touched }) => (
-        <>
-          <Input
-            label="Título"
-            name="title"
-            errors={errors.title}
-            touched={touched.title}
-          />
+    <div className={styles.container}>
+      <Header
+        title="Cadastrar Experiência"
+        description="Formulário para cadastrar experiência"
+      />
 
-          <Input
-            label="Ano Início"
-            name="startYear"
-            errors={errors.startYear}
-            touched={touched.startYear}
-          />
+      <Form
+        onSubmit={onSubmit}
+        validationSchema={validationSchema}
+        initialValues={experience || initialValues}
+      >
+        {({ errors, touched }) => (
+          <>
+            <Input
+              label="Título"
+              name="title"
+              errors={errors.title}
+              touched={touched.title}
+            />
 
-          <Input
-            label="Ano de Fim"
-            name="endYear"
-            errors={errors.endYear}
-            touched={touched.endYear}
-          />
+            <Input
+              label="Ano Início"
+              name="startYear"
+              errors={errors.startYear}
+              touched={touched.startYear}
+            />
 
-          <Select
-            label="Tipo"
-            name="type"
-            options={[
-              {
-                value: "profissional",
-                label: "Profissional",
-              },
-              {
-                value: "academica",
-                label: "Acadêmica",
-              },
-            ]}
-            errors={errors.type}
-            touched={touched.type}
-          />
+            <Input
+              label="Ano de Fim"
+              name="endYear"
+              errors={errors.endYear}
+              touched={touched.endYear}
+            />
 
-          <Textarea
-            label="Descrição"
-            name="description"
-            errors={errors.description}
-            touched={touched.description}
-          />
+            <Select
+              label="Tipo"
+              name="type"
+              options={[
+                {
+                  value: "profissional",
+                  label: "Profissional",
+                },
+                {
+                  value: "academica",
+                  label: "Acadêmica",
+                },
+              ]}
+              errors={errors.type}
+              touched={touched.type}
+            />
 
-          <Button title="Salvar" type="submit" />
-        </>
-      )}
-    </Form>
+            <Textarea
+              label="Descrição"
+              name="description"
+              errors={errors.description}
+              touched={touched.description}
+            />
+
+            <Button title="Salvar" type="submit" />
+          </>
+        )}
+      </Form>
+
+    </div>
   )
 }
 

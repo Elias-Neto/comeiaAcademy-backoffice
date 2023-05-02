@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 
+import styles from "./ProjectList.module.css"
+
 import { Table } from "../../../components/common/Table"
+import { Header } from "../../../components/common/Header"
 
 import {
   Project,
@@ -43,11 +46,18 @@ const ProjectList: React.FC = () => {
   }, [projects])
 
   return (
-    <Table
-      data={projects}
-      onEdit={handleEdit}
-      onDelete={handleDelete}
-    />
+    <div className={styles.container}>
+      <Header
+        title="Listagem de Projetos"
+        description="Listagem com todos os projetos cadastrados"
+      />
+
+      <Table
+        data={projects}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
+    </div>
   )
 }
 

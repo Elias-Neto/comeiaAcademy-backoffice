@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
+import styles from "./ExperienceList.module.css"
+
 import { Table } from "../../../components/common/Table"
+import { Header } from "../../../components/common/Header"
 
 import {
   Experience,
@@ -43,11 +46,18 @@ const ExperienceList: React.FC = () => {
   }, [experiences])
 
   return (
-    <Table
-      data={experiences}
-      onEdit={handleEdit}
-      onDelete={handleDelete}
-    />
+    <div className={styles.container}>
+      <Header
+        title="Listagem de Experiências"
+        description="Lista com todas experiências cadastradas"
+      />
+
+      <Table
+        data={experiences}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+      />
+    </div>
   )
 }
 

@@ -1,9 +1,12 @@
 import * as Yup from "yup"
 import { useNavigate, useLocation } from "react-router-dom"
 
+import styles from "./RegisterProject.module.css"
+
 import { Form } from "../../../components/form/Form"
 import { Input } from "../../../components/form/Input"
 import { Button } from "../../../components/common/Button"
+import { Header } from "../../../components/common/Header"
 
 import {
   Project,
@@ -51,54 +54,59 @@ const RegisterProject: React.FC = () => {
   }
 
   return (
-    <Form
-      title="Cadastrar Projeto"
-      description="Formulário para cadastro de projeto"
-      onSubmit={onSubmit}
-      initialValues={project || initialValues}
-      validationSchema={validationSchema}
-    >
-      {({ errors, touched }) => (
-        <>
-          <Input
-            label="Título"
-            name="title"
-            errors={errors.title}
-            touched={touched.title}
-          />
+    <div className={styles.container}>
+      <Header
+        title="Cadastrar Projeto"
+        description="Formulário para cadastro de projeto"
+      />
 
-          <Input
-            label="Demonstração"
-            name="demonstration"
-            errors={errors.demonstration}
-            touched={touched.demonstration}
-          />
+      <Form
+        onSubmit={onSubmit}
+        initialValues={project || initialValues}
+        validationSchema={validationSchema}
+      >
+        {({ errors, touched }) => (
+          <>
+            <Input
+              label="Título"
+              name="title"
+              errors={errors.title}
+              touched={touched.title}
+            />
 
-          <Input
-            label="Descrição"
-            name="description"
-            errors={errors.description}
-            touched={touched.description}
-          />
+            <Input
+              label="Demonstração"
+              name="demonstration"
+              errors={errors.demonstration}
+              touched={touched.demonstration}
+            />
 
-          <Input
-            label="Github"
-            name="github"
-            errors={errors.github}
-            touched={touched.github}
-          />
+            <Input
+              label="Descrição"
+              name="description"
+              errors={errors.description}
+              touched={touched.description}
+            />
 
-          <Input
-            label="Deploy"
-            name="deploy"
-            errors={errors.deploy}
-            touched={touched.deploy}
-          />
+            <Input
+              label="Github"
+              name="github"
+              errors={errors.github}
+              touched={touched.github}
+            />
 
-          <Button title="Salvar" type="submit" />
-        </>
-      )}
-    </Form>
+            <Input
+              label="Deploy"
+              name="deploy"
+              errors={errors.deploy}
+              touched={touched.deploy}
+            />
+
+            <Button title="Salvar" type="submit" />
+          </>
+        )}
+      </Form>
+    </div>
   )
 }
 
