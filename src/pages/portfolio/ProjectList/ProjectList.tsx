@@ -7,7 +7,7 @@ import {
   Project,
   getProjects,
   deleteProject,
-} from "../../../services/ServiceProject"
+} from "../../../services/ProjectService"
 
 const ProjectList: React.FC = () => {
   const navigate = useNavigate()

@@ -33,8 +33,8 @@ const Table: React.FC<TableProps> = ({ data, onEdit, onDelete }) => {
           {hasTypeAndYears && (
             <>
               <th>Tipo</th>
-              <th>Início</th>
-              <th>Fim</th>
+              <th>Ano de Início</th>
+              <th>Ano de Fim</th>
             </>
           )}
           {hasGitHubAndDeploy && (
@@ -51,9 +51,9 @@ const Table: React.FC<TableProps> = ({ data, onEdit, onDelete }) => {
         {data.map((item) => (
           <tr key={item.id}>
             <td>{item.title}</td>
+            <td>{item.description}</td>
             {hasTypeAndYears && (
               <>
-                <td>{item.description}</td>
                 <td>{item.type}</td>
                 <td>{item.startYear}</td>
                 <td>{item.endYear}</td>

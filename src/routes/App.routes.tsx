@@ -2,7 +2,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 import { Layout } from "../components/layout";
 
-import { Home } from "../pages/Home"
+import { Dashboard } from "../pages/Dashboard"
 import { ProjectList } from "../pages/portfolio/ProjectList"
 import { ExperienceList } from "../pages/curriculo/ExperienceList"
 import { RegisterProject } from "../pages/portfolio/RegisterProject"
@@ -26,7 +26,7 @@ const AppRoutes: React.FC = () => {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Dashboard />} />
         <Route path="/portfolio/listagem" element={<ProjectList />} />
         <Route path="/portfolio/cadastro" element={<RegisterProject />} />
         <Route path="/curriculo/experiancia/listagem" element={<ExperienceList />} />

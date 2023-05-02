@@ -13,7 +13,7 @@ const Sidebar: React.FC = () => {
         <ul>
           <li>
             <NavLink to="/">
-              <h3>Home</h3>
+              <h3>Dashboard</h3>
             </NavLink>
           </li>
         </ul>

@@ -10,7 +10,7 @@ import { Textarea } from "../../../components/form/Textarea"
 import {
   Experience,
   createOrUpdateExperience,
-} from "../../../services/ServiceExperience"
+} from "../../../services/ExperienceService"
 
 const CadastrarExperiencia: React.FC = () => {
   const navigate = useNavigate()

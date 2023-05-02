@@ -8,7 +8,7 @@ import { Button } from "../../../components/common/Button"
 import {
   Project,
   createOrUpdateProject,
-} from "../../../services/ServiceProject"
+} from "../../../services/ProjectService"
 
 const RegisterProject: React.FC = () => {
   const navigate = useNavigate()

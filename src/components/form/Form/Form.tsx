@@ -4,10 +4,8 @@ import * as Yup from "yup"
 import styles from "./Form.module.css"
 
 interface FormProps<T> {
-  title: string
   isLogin?: boolean
   initialValues: T
-  description: string
   enableRenitialize?: boolean
   validationSchema: Yup.ObjectSchema<Partial<T>>
   children: (forkmikProps: FormikProps<T>) => React.ReactNode
@@ -15,8 +13,6 @@ interface FormProps<T> {
 }
 
 const Form = <T extends FormikValues>({
-  title,
-  description,
   initialValues,
   validationSchema,
   onSubmit,
@@ -26,11 +22,6 @@ const Form = <T extends FormikValues>({
 }: FormProps<T>) => {
   return (
     <div className={`${styles.formWrapper} ${isLogin && styles.login}`}>
-      <header>
-        <h1>{title}</h1>
-        <p>{description}</p>
-      </header>
-
       <Formik
         onSubmit={onSubmit}
         initialValues={initialValues}

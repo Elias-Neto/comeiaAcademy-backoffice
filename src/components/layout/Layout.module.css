@@ -12,9 +12,6 @@
 
 .content {
   flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 4rem;
 
   padding: 2.4rem;
 }

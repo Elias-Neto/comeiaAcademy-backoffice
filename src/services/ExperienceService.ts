@@ -19,6 +19,16 @@ export const getExperiences = async () => {
   return response.data
 }
 
+export const getAcademicExperiences = async () => {
+  const response = await api.get("/experiencias?type=academica")
+  return response.data
+}
+
+export const getProfessionalExperiences = async () => {
+  const response = await api.get("/experiencias?type=profissional")
+  return response.data
+}
+
 export const getExperienceById = async (id: number) => {
   const response = await api.get(`/experiencias/${id}`)
   return response.data

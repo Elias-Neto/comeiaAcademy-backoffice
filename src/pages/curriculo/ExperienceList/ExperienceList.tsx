@@ -7,7 +7,7 @@ import {
   Experience,
   deleteExperience,
   getExperiences,
-} from "../../../services/ServiceExperience"
+} from "../../../services/ExperienceService"
 
 const ExperienceList: React.FC = () => {
   const navigate = useNavigate()
@@ -48,36 +48,6 @@ const ExperienceList: React.FC = () => {
       onEdit={handleEdit}
       onDelete={handleDelete}
     />
-    // <table className={styles.table}>
-    //   <thead>
-    //     <tr>
-    //       <th>Título</th>
-    //       <th>Descrição</th>
-    //       <th>Tipo</th>
-    //       <th>Início</th>
-    //       <th>Fim</th>
-    //       <th>Ações</th>
-    //     </tr>
-    //   </thead>
-
-    //   <tbody>
-    //     {experiences.map((experience) => (
-    //       <tr key={experience.id}>
-    //         <td>{experience.title}</td>
-    //         <td>{experience.description}</td>
-    //         <td>{experience.type}</td>
-    //         <td>{experience.startYear}</td>
-    //         <td>{experience.endYear}</td>
-    //         <td>
-    //           <button onClick={() => handleEdit(experience)}>Editar</button>
-    //           <button onClick={() => handleDelete(experience.id)}>
-    //             Deletar
-    //           </button>
-    //         </td>
-    //       </tr>
-    //     ))}
-    //   </tbody>
-    // </table>
   )
 }
 

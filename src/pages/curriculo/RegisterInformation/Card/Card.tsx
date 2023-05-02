@@ -1,6 +1,6 @@
 import styles from "./Card.module.css"
 
-import { Information } from "../../../../services/ServiceInformation"
+import { Information } from "../../../../services/InformationService"
 
 interface CardProps {
   information: Information

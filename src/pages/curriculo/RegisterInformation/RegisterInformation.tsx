@@ -14,7 +14,7 @@ import {
   Information,
   updateInformation,
   getInformation,
-} from "../../../services/ServiceInformation"
+} from "../../../services/InformationService"
 
 const CadastrarInformacoes: React.FC = () => {
   const initialValues: Information = {
@@ -75,7 +75,7 @@ const CadastrarInformacoes: React.FC = () => {
   }, [])
 
   return (
-    <>
+    <div className={styles.container}>
       <Form
         title="Cadastrar Informações"
         description="Formulário para cadastro de informações"
@@ -125,7 +125,7 @@ const CadastrarInformacoes: React.FC = () => {
           <Button title="Deletar" isRed onClick={handleDelete} />
         </div>
       )}
-    </>
+    </div>
   )
 }
 

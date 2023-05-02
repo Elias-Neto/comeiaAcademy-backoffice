@@ -1,0 +1,20 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.item span:nth-child(1)::before {
+  content: "";
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+  background: var(--bg-color);
+  border-radius: 999px;
+}
+
+.item span:nth-child(1) {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}

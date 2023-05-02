@@ -71,39 +71,6 @@ const Login = () => {
         </>
       )}
     </Form>
-    // <div className={styles.formWrapper}>
-    //   <header>
-    //     <h1>BackOffice do Meu Site Pessoal</h1>
-    //     <p>Faça seu login</p>
-    //   </header>
-
-    //   <Formik
-    //     initialValues={initialValues}
-    //     validationSchema={validationSchema}
-    //     onSubmit={onSubmit}
-    //   >
-    //     {({ errors, touched }) => (
-    //       <Form className={styles.form}>
-    //         <Input
-    //           label="E-mail"
-    //           name="email"
-    //           errors={errors.email}
-    //           touched={touched.email}
-    //         />
-
-    //         <Input
-    //           label="Senha"
-    //           name="password"
-    //           type="password"
-    //           errors={errors.password}
-    //           touched={touched.password}
-    //         />
-
-    //         <Button title="Salvar" type="submit" />
-    //       </Form>
-    //     )}
-    //   </Formik>
-    // </div>
   )
 }
 
