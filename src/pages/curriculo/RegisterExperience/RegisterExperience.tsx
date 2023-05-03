@@ -48,6 +48,7 @@ const CadastrarExperiencia: React.FC = () => {
       resetForm()
       navigate("/curriculo/experiancia/listagem")
       alert("Formulário enviado com sucesso!")
+      console.log(values)
     } catch (error) {
       console.log(error)
       alert("Ocorreu um erro ao enviar o formulário")
@@ -78,6 +79,7 @@ const CadastrarExperiencia: React.FC = () => {
             <Input
               label="Ano Início"
               name="startYear"
+              type="number"
               errors={errors.startYear}
               touched={touched.startYear}
             />
@@ -85,6 +87,7 @@ const CadastrarExperiencia: React.FC = () => {
             <Input
               label="Ano de Fim"
               name="endYear"
+              type="number"
               errors={errors.endYear}
               touched={touched.endYear}
             />

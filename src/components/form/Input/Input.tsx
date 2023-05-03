@@ -8,6 +8,7 @@ interface InputProps {
   type?: string
   errors?: string
   touched?: boolean
+  value?: string
 }
 
 const Input: React.FC<InputProps> = ({
@@ -16,6 +17,7 @@ const Input: React.FC<InputProps> = ({
   type = "text",
   errors,
   touched,
+  value
 }) => {
   return (
     <fieldset className={styles.formGroup}>
@@ -27,6 +29,7 @@ const Input: React.FC<InputProps> = ({
         name={name}
         id={name}
         className={`${styles.input} ${touched && errors && styles.error}`}
+        value={value}
       />
       <ErrorMessage name={name} component="div" className={styles.errorMsg} />
     </fieldset>
