@@ -1,13 +1,14 @@
-import { Formik, FormikHelpers, FormikProps, FormikValues, Form as FormikForm } from "formik"
+// Packages Imports
 import * as Yup from "yup"
+import { Formik, FormikHelpers, FormikProps, FormikValues, Form as FormikForm } from "formik"
 
+// Styles Imports
 import styles from "./Form.module.css"
 
 interface FormProps<T> {
-  isLogin?: boolean
   initialValues: T
   enableRenitialize?: boolean
-  validationSchema: Yup.ObjectSchema<Partial<T>>
+  validationSchema: Yup.ObjectSchema<Omit<Partial<T>, "id">>
   children: (forkmikProps: FormikProps<T>) => React.ReactNode
   onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<void>
 }
@@ -17,11 +18,10 @@ const Form = <T extends FormikValues>({
   validationSchema,
   onSubmit,
   children,
-  isLogin = false,
   enableRenitialize = false
 }: FormProps<T>) => {
   return (
-    <div className={`${styles.formWrapper} ${isLogin && styles.login}`}>
+    <div className={styles.formWrapper}>
       <Formik
         onSubmit={onSubmit}
         initialValues={initialValues}
