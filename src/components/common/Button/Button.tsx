@@ -1,7 +1,7 @@
-import { HTMLProps } from "react"
+// Styles Imports
 import styles from "./Button.module.css"
 
-interface ButtonProps extends HTMLProps<HTMLButtonElement> {
+interface ButtonProps {
   title: string
   isRed?: boolean
   type?: "button" | "submit" | "reset"
