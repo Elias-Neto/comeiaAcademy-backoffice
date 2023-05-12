@@ -1,8 +1,13 @@
+// Package Imports
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
-import { Login } from "./pages/Login"
+// Routes Imports
 import AppRoutes from "./routes/App.routes"
 
+// Pages Imports
+import { Login } from "./pages/Login"
+
+// Context Imports
 import { AuthProvider } from "./contexts/AuthContext"
 
 const App: React.FC = () => {
