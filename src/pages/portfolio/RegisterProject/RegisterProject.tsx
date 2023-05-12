@@ -48,7 +48,7 @@ const RegisterProject: React.FC = () => {
       console.log(values)
       await createOrUpdateProject(values)
       resetForm()
-      navigate("/portfolio/listagem")
+      navigate("/portfolio/listar")
       alert("Formulário enviado com sucesso!")
     } catch (error) {
       console.log(error)

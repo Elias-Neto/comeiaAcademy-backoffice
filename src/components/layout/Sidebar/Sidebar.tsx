@@ -25,17 +25,17 @@ const Sidebar: React.FC = () => {
 
         <ul>
           <li>
-            <NavLink to="/curriculo/informacoes/cadastro">
+            <NavLink to="/curriculo/informacoes">
               Cadastrar Informações
             </NavLink>
           </li>
           <li>
-            <NavLink to="/curriculo/experiencia/cadastro">
+            <NavLink to="/curriculo/experiencia/cadastrar">
               Cadastrar Experiência
             </NavLink>
           </li>
           <li>
-            <NavLink to="/curriculo/experiancia/listagem">
+            <NavLink to="/curriculo/experiencia/listar">
               Listagem de Experiências
             </NavLink>
           </li>
@@ -45,10 +45,10 @@ const Sidebar: React.FC = () => {
 
         <ul>
           <li>
-            <NavLink to="/portfolio/cadastro">Cadastrar Portfólio</NavLink>
+            <NavLink to="/portfolio/cadastrar">Cadastrar Portfólio</NavLink>
           </li>
           <li>
-            <NavLink to="/portfolio/listagem">Listagem de Portfólio</NavLink>
+            <NavLink to="/portfolio/listar">Listagem de Portfólio</NavLink>
           </li>
         </ul>
 

@@ -40,7 +40,7 @@ const ExperienceList: React.FC = () => {
   }
 
   const handleEdit = (experience: Experience): void => {
-    navigate("/curriculo/experiencia/cadastro", { state: experience })
+    navigate("/curriculo/experiencia/atualizar", { state: experience })
   }
 
   const handleDelete = async (id: number): Promise<void> => {

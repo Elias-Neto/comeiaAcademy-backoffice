@@ -41,7 +41,7 @@ const ProjectList: React.FC = () => {
   }
 
   const handleEdit = (project: Project): void => {
-    navigate("/portfolio/cadastro", { state: project })
+    navigate("/portfolio/atualizar", { state: project })
   }
 
   const handleDelete = async (id: number): Promise<void> => {
