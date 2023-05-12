@@ -44,6 +44,8 @@ const ExperienceList: React.FC = () => {
   }
 
   const handleDelete = async (id: number): Promise<void> => {
+    const confirmation = confirm("Deseja mesmo deletar esta experiência?")
+    if (!confirmation) return
     try {
       await deleteExperience(id)
       setExperiences(experiences.filter((experience) => experience.id !== id))

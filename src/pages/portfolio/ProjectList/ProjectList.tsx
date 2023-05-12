@@ -45,6 +45,8 @@ const ProjectList: React.FC = () => {
   }
 
   const handleDelete = async (id: number): Promise<void> => {
+    const confirmation = confirm("Deseja mesmo deletar este projeto?")
+    if (!confirmation) return
     try {
       await deleteProject(id)
       setProjects(projects.filter((project) => project.id !== id))
