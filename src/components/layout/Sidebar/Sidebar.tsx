@@ -1,7 +1,10 @@
+// Packages Imports
 import { NavLink } from "react-router-dom"
 
+// Styles Imports
 import styles from "./Sidebar.module.css"
 
+// Contexts Imports
 import { useAuth } from "../../../contexts/AuthContext"
 
 const Sidebar: React.FC = () => {

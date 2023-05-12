@@ -1,8 +1,10 @@
+// Styles Imports
+import styles from "./Layout.module.css"
+
+// Components Imports
 import { Header } from "./Header"
 import { Footer } from "./Footer"
 import { Sidebar } from "./Sidebar"
-
-import styles from "./Layout.module.css"
 
 interface LayoutProps {
   children: React.ReactNode

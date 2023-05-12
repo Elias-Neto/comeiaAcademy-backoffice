@@ -9,7 +9,6 @@ import { Form } from "../../../components/form/Form"
 import { Input } from "../../../components/form/Input"
 import { Header } from "../../../components/common/Header"
 import { Button } from "../../../components/common/Button"
-import { Textarea } from "../../../components/form/Textarea"
 
 import {
   Information,
@@ -111,7 +110,8 @@ const CadastrarInformacoes: React.FC = () => {
                 touched={touched.office}
               />
 
-              <Textarea
+              <Input
+                as="textarea"
                 label="Resumo"
                 name="resume"
                 errors={errors.resume}
