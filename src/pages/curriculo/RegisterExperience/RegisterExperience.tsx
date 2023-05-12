@@ -5,10 +5,8 @@ import styles from "./RegisterExperience.module.css"
 
 import { Form } from "../../../components/form/Form"
 import { Input } from "../../../components/form/Input"
-import { Select } from "../../../components/form/Select"
 import { Header } from "../../../components/common/Header"
 import { Button } from "../../../components/common/Button"
-import { Textarea } from "../../../components/form/Textarea"
 
 import {
   Experience,
@@ -31,7 +29,6 @@ const CadastrarExperiencia: React.FC = () => {
   }
 
   const validationSchema = Yup.object().shape({
-    id: Yup.number(),
     title: Yup.string().required("Campo obrigatório"),
     description: Yup.string(),
     type: Yup.string().required("Campo obrigatório"),
@@ -92,24 +89,20 @@ const CadastrarExperiencia: React.FC = () => {
               touched={touched.endYear}
             />
 
-            <Select
+            <Input
+              as="select"
               label="Tipo"
               name="type"
-              options={[
-                {
-                  value: "profissional",
-                  label: "Profissional",
-                },
-                {
-                  value: "academica",
-                  label: "Acadêmica",
-                },
-              ]}
               errors={errors.type}
               touched={touched.type}
-            />
+            >
+              <option value="">Selecione uma opção</option>
+              <option value="profissional">Profissional</option>
+              <option value="academica">Acadêmica</option>
+            </Input>
 
-            <Textarea
+            <Input
+              as="textarea"
               label="Descrição"
               name="description"
               errors={errors.description}

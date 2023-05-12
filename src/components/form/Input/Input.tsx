@@ -1,23 +1,27 @@
+// Packages Imports
 import { Field, ErrorMessage } from "formik"
 
+// Styles Imports
 import styles from "./Input.module.css"
 
 interface InputProps {
   label: string
   name: string
+  as?: string
   type?: string
   errors?: string
   touched?: boolean
-  value?: string
+  children?: React.ReactNode
 }
 
 const Input: React.FC<InputProps> = ({
   label,
   name,
+  as,
   type = "text",
   errors,
   touched,
-  value
+  children
 }) => {
   return (
     <fieldset className={styles.formGroup}>
@@ -25,12 +29,14 @@ const Input: React.FC<InputProps> = ({
         {label}:
       </label>
       <Field
+        as={as}
         type={type}
         name={name}
         id={name}
         className={`${styles.input} ${touched && errors && styles.error}`}
-        value={value}
-      />
+      >
+        {children}
+      </Field>
       <ErrorMessage name={name} component="div" className={styles.errorMsg} />
     </fieldset>
   )

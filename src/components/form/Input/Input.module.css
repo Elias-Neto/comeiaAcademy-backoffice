@@ -22,6 +22,10 @@
   outline: none;
 }
 
+textarea {
+  height: 15rem;
+}
+
 .error {
   border: 0.2rem solid #ff6666;
 }
