@@ -1,5 +1,7 @@
+// Styles Imports
 import styles from "./Card.module.css"
 
+// Services Imports
 import { Information } from "../../../../services/InformationService"
 
 interface CardProps {

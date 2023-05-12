@@ -1,15 +1,21 @@
-import * as Yup from "yup"
-import deepEqual from "deep-equal"
+// React Imports
 import { useEffect, useState } from "react"
 
+// Packages Imports
+import * as Yup from "yup"
+import deepEqual from "deep-equal"
+
+// Styles Imports
 import styles from "./RegisterInformation.module.css"
 
+// Components Imports
 import { Card } from "./Card"
 import { Form } from "../../../components/form/Form"
 import { Input } from "../../../components/form/Input"
 import { Header } from "../../../components/common/Header"
 import { Button } from "../../../components/common/Button"
 
+// Services Imports
 import {
   Information,
   updateInformation,
@@ -28,7 +34,6 @@ const CadastrarInformacoes: React.FC = () => {
   const [information, setInformation] = useState<Information>(initialValues as Information)
 
   const validationSchema = Yup.object().shape({
-    id: Yup.number(),
     profilePic: Yup.string().required("Campo obrigatório"),
     name: Yup.string().required("Campo obrigatório"),
     office: Yup.string().required("Campo obrigatório"),
