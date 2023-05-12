@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 
 import styles from "./ProjectList.module.css"
 
-import { Table } from "../../../components/common/Table"
+import { Table, Column } from "../../../components/common/Table"
 import { Header } from "../../../components/common/Header"
 
 import {
@@ -17,6 +17,14 @@ const ProjectList: React.FC = () => {
 
   const [projects, setProjects] = useState<Project[]>([])
 
+  const colums: Column<Project>[] = [
+    { header: "Título", accessor: "title" },
+    { header: "Descrição", accessor: "description" },
+    { header: "Demonstração", accessor: "demonstration" },
+    { header: "Github", accessor: "github" },
+    { header: "Deploy", accessor: "deploy" },
+  ]
+
   const fetchProjects = async () => {
     try {
       const projects = await getProjects()
@@ -26,11 +34,11 @@ const ProjectList: React.FC = () => {
     }
   }
 
-  const handleEdit = (project: Project) => {
+  const handleEdit = (project: Project): void => {
     navigate("/portfolio/cadastro", { state: project })
   }
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: number): Promise<void> => {
     try {
       await deleteProject(id)
       setProjects(projects.filter((project) => project.id !== id))
@@ -53,6 +61,7 @@ const ProjectList: React.FC = () => {
       />
 
       <Table
+        columns={colums}
         data={projects}
         onEdit={handleEdit}
         onDelete={handleDelete}

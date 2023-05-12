@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 import styles from "./ExperienceList.module.css"
 
-import { Table } from "../../../components/common/Table"
+import { Table, Column } from "../../../components/common/Table"
 import { Header } from "../../../components/common/Header"
 
 import {
@@ -17,6 +17,13 @@ const ExperienceList: React.FC = () => {
 
   const [experiences, setExperiences] = useState<Experience[]>([])
 
+  const colums: Column<Experience>[] = [
+    { header: "Titúlo", accessor: "title" },
+    { header: "Descrição", accessor: "description" },
+    { header: "Ano de início", accessor: "startYear" },
+    { header: "Ano de fim", accessor: "endYear" },
+  ]
+
   const fetchExperiences = async () => {
     try {
       const experiences = await getExperiences()
@@ -26,11 +33,11 @@ const ExperienceList: React.FC = () => {
     }
   }
 
-  const handleEdit = (experience: Experience) => {
+  const handleEdit = (experience: Experience): void => {
     navigate("/curriculo/experiencia/cadastro", { state: experience })
   }
 
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: number): Promise<void> => {
     try {
       await deleteExperience(id)
       setExperiences(experiences.filter((experience) => experience.id !== id))
@@ -53,6 +60,7 @@ const ExperienceList: React.FC = () => {
       />
 
       <Table
+        columns={colums}
         data={experiences}
         onEdit={handleEdit}
         onDelete={handleDelete}
