@@ -1,11 +1,17 @@
-import { useNavigate } from "react-router-dom"
+// React Imports
 import { useState, useEffect } from "react"
 
+// Package Imports
+import { useNavigate } from "react-router-dom"
+
+// Style Imports
 import styles from "./ProjectList.module.css"
 
+// Component Imports
 import { Table, Column } from "../../../components/common/Table"
 import { Header } from "../../../components/common/Header"
 
+// Server Imports
 import {
   Project,
   getProjects,

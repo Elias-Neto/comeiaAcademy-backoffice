@@ -1,13 +1,17 @@
+// Packages Imports
 import * as Yup from "yup"
 import { useNavigate, useLocation } from "react-router-dom"
 
+// Styles Imports
 import styles from "./RegisterProject.module.css"
 
+// Components Imports
 import { Form } from "../../../components/form/Form"
 import { Input } from "../../../components/form/Input"
 import { Button } from "../../../components/common/Button"
 import { Header } from "../../../components/common/Header"
 
+// Services Imports
 import {
   Project,
   createOrUpdateProject,
@@ -29,7 +33,6 @@ const RegisterProject: React.FC = () => {
   }
 
   const validationSchema = Yup.object().shape({
-    id: Yup.number(),
     title: Yup.string().required("Campo obrigatório"),
     demonstration: Yup.string().required("Campo obrigatório"),
     description: Yup.string().required("Campo obrigatório"),
