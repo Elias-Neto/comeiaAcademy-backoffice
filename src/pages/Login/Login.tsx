@@ -1,14 +1,20 @@
+// Packages Imports
 import * as Yup from "yup"
 import { useNavigate } from "react-router-dom"
 
+// Styles Imports
 import styles from "./Login.module.css"
 
+// Components Imports
 import { Form } from "../../components/form/Form"
 import { Input } from "../../components/form/Input"
 import { Button } from "../../components/common/Button"
 import { Header } from "../../components/common/Header"
 
+// Contexts Imports
 import { useAuth } from "../../contexts/AuthContext"
+
+// Services Imports
 import { login as loginService } from "../../services/AuthService"
 
 interface LoginValues {
@@ -54,7 +60,6 @@ const Login = () => {
         onSubmit={onSubmit}
         initialValues={initialValues}
         validationSchema={validationSchema}
-        isLogin
       >
         {({ errors, touched }) => (
           <>
@@ -73,7 +78,7 @@ const Login = () => {
               touched={touched.password}
             />
 
-            <Button title="Salvar" type="submit" />
+            <Button title="Entrar" type="submit" />
           </>
         )}
       </Form>
