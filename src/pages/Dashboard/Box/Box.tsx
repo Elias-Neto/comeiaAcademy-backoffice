@@ -1,3 +1,4 @@
+// Styles Imports
 import styles from "./Box.module.css"
 
 interface BoxProps {

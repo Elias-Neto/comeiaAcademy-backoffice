@@ -1,3 +1,4 @@
+// Styles Imports
 import styles from "./DonoutGraph.module.css"
 
 interface CustomSVGProps extends React.SVGProps<SVGSVGElement> {

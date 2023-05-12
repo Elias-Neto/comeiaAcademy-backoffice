@@ -1,3 +1,4 @@
+// Styles Import
 import styles from "./BottomItem.module.css"
 
 interface CustomCSSProperties extends React.CSSProperties {
