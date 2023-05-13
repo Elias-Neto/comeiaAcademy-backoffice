@@ -28,8 +28,8 @@ const CadastrarExperiencia: React.FC = () => {
     title: "",
     description: "",
     type: "",
-    startYear: 0,
-    endYear: 0,
+    startYear: "",
+    endYear: "",
   }
 
   const validationSchema = Yup.object().shape({
@@ -59,8 +59,8 @@ const CadastrarExperiencia: React.FC = () => {
   return (
     <div className={styles.container}>
       <Header
-        title="Cadastrar Experiência"
-        description="Formulário para cadastrar experiência"
+        title={!experience ? "Cadastrar Experiência" : "Atualizar Experiência"}
+        description={!experience ? "Formulário para cadastrar experiência" : "Formulário para atualizar experiência"}
       />
 
       <Form

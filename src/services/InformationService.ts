@@ -8,9 +8,9 @@ export interface Information {
   resume: string
 }
 
-export async function updateInformation(
+export const updateInformation = async (
   information: Information
-): Promise<Information> {
+): Promise<Information> => {
   const response = await api.put<Information>(
     `/informacoes/${information.id}`,
     information
@@ -18,7 +18,7 @@ export async function updateInformation(
   return response.data
 }
 
-export async function getInformation(): Promise<Information> {
+export const getInformation = async (): Promise<Information> => {
   const response = await api.get<Information>("/informacoes/1")
   return response.data
 }

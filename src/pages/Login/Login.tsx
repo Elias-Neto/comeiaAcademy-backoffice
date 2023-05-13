@@ -15,14 +15,10 @@ import { Header } from "../../components/common/Header"
 import { useAuth } from "../../contexts/AuthContext"
 
 // Services Imports
+import { LoginData } from "../../services/AuthService"
 import { login as loginService } from "../../services/AuthService"
 
-interface LoginValues {
-  email: string
-  password: string
-}
-
-const initialValues: LoginValues = {
+const initialValues: LoginData = {
   email: "",
   password: "",
 }
@@ -32,16 +28,15 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().min(6, "A senha deve ter pelo menos 6 caracteres").required("Campo obrigatório"),
 })
 
-
 const Login = () => {
   const navigate = useNavigate()
   const { login } = useAuth()
 
   const onSubmit = async (
-    values: LoginValues
+    values: LoginData
   ): Promise<void> => {
     try {
-      const user = await loginService(values.email, values.password)
+      const user = await loginService(values)
       login(user)
       navigate("/")
     } catch (error) {
