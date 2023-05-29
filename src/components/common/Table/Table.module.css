@@ -14,3 +14,8 @@
 .table th {
   background-color: #f2f2f2;
 }
+
+.table .actions {
+  display: flex;
+  gap: 1rem;
+}
