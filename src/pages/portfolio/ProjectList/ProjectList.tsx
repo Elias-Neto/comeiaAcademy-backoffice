@@ -59,7 +59,7 @@ const ProjectList: React.FC = () => {
 
   useEffect(() => {
     fetchProjects()
-  }, [projects])
+  }, [])
 
   return (
     <div className={styles.container}>

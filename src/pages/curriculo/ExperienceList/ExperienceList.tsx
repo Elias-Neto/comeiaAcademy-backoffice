@@ -58,7 +58,7 @@ const ExperienceList: React.FC = () => {
 
   useEffect(() => {
     fetchExperiences()
-  }, [experiences])
+  }, [])
 
   return (
     <div className={styles.container}>
