@@ -65,6 +65,8 @@ const CadastrarInformacoes: React.FC = () => {
   }
 
   const handleDelete = async () => {
+    const confirmation = confirm("Deseja mesmo deletar estas informações?")
+    if (!confirmation) return
     try {
       await updateInformation(initialValues)
       setInformation(initialValues)
@@ -90,7 +92,7 @@ const CadastrarInformacoes: React.FC = () => {
           initialValues={information}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
-          enableRenitialize
+          enableReinitialize
         >
           {({ errors, touched }) => (
             <>

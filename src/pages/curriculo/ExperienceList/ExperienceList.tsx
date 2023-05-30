@@ -26,6 +26,7 @@ const ExperienceList: React.FC = () => {
   const colums: Column<Experience>[] = [
     { header: "Titúlo", accessor: "title" },
     { header: "Descrição", accessor: "description" },
+    { header: "Tipo", accessor: "type" },
     { header: "Ano de início", accessor: "startYear" },
     { header: "Ano de fim", accessor: "endYear" },
   ]

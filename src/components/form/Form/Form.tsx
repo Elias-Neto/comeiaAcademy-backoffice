@@ -7,7 +7,7 @@ import styles from "./Form.module.css"
 
 interface FormProps<T> {
   initialValues: T
-  enableRenitialize?: boolean
+  enableReinitialize?: boolean
   validationSchema: Yup.ObjectSchema<Omit<Partial<T>, "id">>
   children: (forkmikProps: FormikProps<T>) => React.ReactNode
   onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<void>
@@ -18,7 +18,7 @@ const Form = <T extends FormikValues>({
   validationSchema,
   onSubmit,
   children,
-  enableRenitialize = false
+  enableReinitialize = false
 }: FormProps<T>) => {
   return (
     <div className={styles.formWrapper}>
@@ -26,7 +26,7 @@ const Form = <T extends FormikValues>({
         onSubmit={onSubmit}
         initialValues={initialValues}
         validationSchema={validationSchema}
-        enableReinitialize={enableRenitialize}
+        enableReinitialize={enableReinitialize}
       >
         {(formikProps) => <FormikForm className={styles.form}>{children(formikProps)}</FormikForm>}
       </Formik>

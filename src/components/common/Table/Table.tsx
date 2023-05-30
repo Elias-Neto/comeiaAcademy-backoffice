@@ -45,9 +45,7 @@ export const Table = <T extends { id: number },>({ columns, data, onEdit, onDele
             ))}
             {(onEdit || onDelete) && (
               <td className={styles.actions}>
-                {/* {onEdit && <button type="button" onClick={() => onEdit(item)}>Editar</button>} */}
                 {onEdit && <Button title="Editar" type="button" onClick={() => onEdit(item)} />}
-                {/* {onDelete && <button type="button" onClick={() => onDelete(item.id)}>Excluir</button>} */}
                 {onDelete && <Button title="Excluir" type="button" onClick={() => onDelete(item.id)} isRed />}
               </td>
             )}
