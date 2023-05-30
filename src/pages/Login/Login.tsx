@@ -15,7 +15,7 @@ import { Header } from "../../components/common/Header"
 import { useAuth } from "../../contexts/AuthContext"
 
 // Services Imports
-import { LoginData } from "../../services/AuthService"
+import { User as LoginData } from "../../services/AuthService"
 import { login as loginService } from "../../services/AuthService"
 
 const initialValues: LoginData = {

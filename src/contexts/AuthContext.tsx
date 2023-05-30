@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState } from "react"
 
 // Services Imports
-import { User } from "../services/UserService"
+import { User } from "../services/AuthService"
 
 interface AuthContextProps {
   user: User
