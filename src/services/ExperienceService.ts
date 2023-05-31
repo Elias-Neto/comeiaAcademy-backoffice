@@ -5,8 +5,8 @@ export interface Experience {
   title: string
   description: string
   type: string
-  startYear: number | ""
-  endYear: number | ""
+  startYear: string
+  endYear: string
 }
 
 export const createExperience = async (

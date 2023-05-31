@@ -36,8 +36,8 @@ const CadastrarExperiencia: React.FC = () => {
     title: Yup.string().required("Campo obrigatório"),
     description: Yup.string(),
     type: Yup.string().required("Campo obrigatório"),
-    startYear: Yup.number().typeError("Um número é obrigatório"),
-    endYear: Yup.number().typeError("Um número é obrigatório"),
+    startYear: Yup.string(),
+    endYear: Yup.string(),
   })
 
   const onSubmit = async (
@@ -80,7 +80,6 @@ const CadastrarExperiencia: React.FC = () => {
             <Input
               label="Ano Início"
               name="startYear"
-              type="number"
               errors={errors.startYear}
               touched={touched.startYear}
             />
@@ -88,7 +87,6 @@ const CadastrarExperiencia: React.FC = () => {
             <Input
               label="Ano de Fim"
               name="endYear"
-              type="number"
               errors={errors.endYear}
               touched={touched.endYear}
             />
